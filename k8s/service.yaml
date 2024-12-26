@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: khushi-service
+  name: khushi-app-service
 spec:
   selector:
-    app: khushi-app
+    app: khushi-app  # This should match the label defined in your deployment.yaml
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 3000
-  type: LoadBalancer
+  - protocol: TCP
+    port: 80           # Exposing port 80 for external access
+    targetPort: 80      # Your container is listening on port 80
+  type: LoadBalancer     # Exposing the service with LoadBalancer type for external access

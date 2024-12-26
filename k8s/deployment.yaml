@@ -1,11 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: khushi-app
-  labels:
-    app: khushi-app
+  name: khushi-app-deployment
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: khushi-app
@@ -15,7 +13,10 @@ spec:
         app: khushi-app
     spec:
       containers:
-      - name: khushi-container
-        image: pb26uk/khushi
+      - name: khushi-app
+        image: pb26uk/khushi:latest  # Use your Docker image here
         ports:
-        - containerPort: 3000
+        - containerPort: 80  # Exposing port 80, since your app runs on port 80
+        env:
+        - name: PORT
+          value: "80"  # Set the environment variable if needed
